@@ -205,6 +205,24 @@
             <zipfileset dir="${dir.license}" prefix="${product}/license"/>
         </zip>
     </target>
+    
+    <target name="appbundle" depends="build-mac">
+    	<taskdef name="release/jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
+    		<jarbundler dir="release"
+              name="${product}"
+              shortname="${product}"
+              signature="JANL"
+              mainclass="com.pavelfatin.archiver.Archiver"
+              jar="${dir.build}/${file.jar}"
+              icon="${dir.etc}/compound.icns"
+              jvmversion="1.5+"
+              version="${version}"
+              infostring="${product}, Copyright 2011"
+              bundleid="com.pavelfatin.SleepArchiver">
+        	<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
+        	<javafilelist dir="${dir.etc}" files="librxtxSerial.jnilib"/>
+        </jarbundler>
+    </target>
 
     <target name="launcher" depends="prepare">
         <nsis script="script/Launcher.nsi">
