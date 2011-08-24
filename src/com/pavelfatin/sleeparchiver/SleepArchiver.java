@@ -26,6 +26,7 @@ import com.pavelfatin.sleeparchiver.model.Preferences;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.LocalStorage;
 import org.jdesktop.application.SingleFrameApplication;
+import javax.swing.UIManager;
 
 import java.io.File;
 
@@ -37,6 +38,11 @@ public class SleepArchiver extends SingleFrameApplication {
 
 
     public static void main(String[] args) {
+    	try {
+    		UIManager.setLookAndFeel(
+    			UIManager.getSystemLookAndFeelClassName());
+    	} catch (Exception e) { }
+    	
         Application.launch(SleepArchiver.class, args);
     }
 

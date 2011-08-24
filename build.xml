@@ -206,8 +206,10 @@
         </zip>
     </target>
     
-    <target name="appbundle" depends="build-mac">
-    	<taskdef name="release/jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
+    <target name="appbundle" depends="jars">
+    	<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler">
+    		<classpath location="lib/jarbundler-2.2.0.jar"/>
+    	</taskdef>
     		<jarbundler dir="release"
               name="${product}"
               shortname="${product}"
